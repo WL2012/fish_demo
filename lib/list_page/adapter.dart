@@ -39,7 +39,6 @@ class _MylistConnector extends ConnOp<ListState, List<ItemBean>> {
 
   @override
   subReducer(reducer) {
-    // TODO: implement subReducer
     return super.subReducer(reducer);
   }
 }
