@@ -25,19 +25,21 @@ class App extends StatelessWidget {
           'personal_page': PersonalPage(),
         },
         visitor: (String path, Page<Object, dynamic> page) {
-          page.connectExtraStore(GlobalStore.globalStore,
-              (Object pageState, GlobalState globalState) {
-            final GlobalBaseState baseState = pageState;
-            if (baseState.themeColor != globalState.themeColor) {
-              if (pageState is Cloneable) {
-                final Object copy = pageState.clone();
-                final GlobalBaseState newState = copy;
-                newState.themeColor = globalState.themeColor;
-                return newState;
+          if (page.isTypeof<GlobalBaseState>()) {
+            page.connectExtraStore(GlobalStore.globalStore,
+                (Object pageState, GlobalState appState) {
+              final GlobalBaseState baseState = pageState;
+              if (baseState.themeColor != appState.themeColor) {
+                if (pageState is Cloneable) {
+                  final Object copy = pageState.clone();
+                  final GlobalBaseState newState = copy;
+                  newState.themeColor = appState.themeColor;
+                  return newState;
+                }
               }
-            }
-            return pageState;
-          });
+              return pageState;
+            });
+          }
         });
     return MaterialApp(
       title: 'Flutter Demo',

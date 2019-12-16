@@ -9,24 +9,21 @@ import 'effect.dart';
 import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
-import 'adapter.dart';
 
-class TabbarPage extends Page<TabbarState, Map<String, dynamic>> {
-  TabbarPage()
+class ModuleComponent extends Component<ModuleState> {
+  ModuleComponent()
       : super(
-          initState: initState,
           effect: buildEffect(),
           reducer: buildReducer(),
           view: buildView,
-          dependencies: Dependencies<TabbarState>(
-              adapter: NoneConn<TabbarState>() + TabbarAdapter(),
-              slots: <String, Dependent<TabbarState>>{
+          dependencies: Dependencies<ModuleState>(
+              adapter: null,
+              slots: <String, Dependent<ModuleState>>{
                 'vehicle': VehicleConnector() + VehicleComponent(),
                 'destination': DestinationConnector() + DestinationComponent(),
                 'discover': DiscoverConnector() + DiscoverComponent(),
                 'activity': ActivityConnector() + ActivityComponent(),
                 'mine': MineConnector() + MineComponent()
               }),
-          middleware: <Middleware<TabbarState>>[],
         );
 }

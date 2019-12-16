@@ -16,4 +16,5 @@ void _onAction(Action action, Context<ItemState> ctx) {
 
 void _onThemeChange(Action action, Context<ItemState> ctx) {
   GlobalStore.globalStore.dispatch(GlobalActionCreator.onChangeThemeColor());
+  ctx.broadcast(GlobalActionCreator.onChangeThemeColor());
 }

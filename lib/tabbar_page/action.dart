@@ -1,6 +1,7 @@
+import 'package:fish_demo/module_component/state.dart';
 import 'package:fish_redux/fish_redux.dart';
 
-enum TabbarAction { action, initTabbarItems, changeTabbar }
+enum TabbarAction { action, showTabbarItems, changeTabbar }
 
 class TabbarActionCreator {
   static Action onAction() {
@@ -11,7 +12,7 @@ class TabbarActionCreator {
     return Action(TabbarAction.changeTabbar, payload: index);
   }
 
-  static Action initTabbarItems() {
-    return const Action(TabbarAction.initTabbarItems);
+  static Action showTabbarItems(List<ModuleState> tabbarItems) {
+    return Action(TabbarAction.showTabbarItems, payload: tabbarItems);
   }
 }
